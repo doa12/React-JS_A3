@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Router from './Router';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { darkTheme, lightTheme } from './theme'
-import Toggle from './components/Toggle';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -67,14 +66,13 @@ const GlobalStyle = createGlobalStyle`
 `
 
 function App() {
-  const [isDarkMode] = useState(true);
+  const [isDark, setIsDark] = useState(true);
+  const toggleDark = () => setIsDark((current) => !current);
   return(
     <>
-      <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
-      {/* <ThemeProvider theme={darkTheme}> */}
-      {/* <ThemeProvider theme={lightTheme}> */}
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+        <Button onClick={toggleDark}>☀️ / 🌙</Button>
         <GlobalStyle />
-        <Toggle />
         <Router />
         <ReactQueryDevtools initialIsOpen={true} />
       </ThemeProvider>
@@ -83,3 +81,17 @@ function App() {
 }
 
 export default App;
+
+const Button = styled.button`
+  cursor: pointer;
+  text-align: center;
+  width: 75px; 
+  height: 35px;
+  background: whitesmoke;
+  display: block;
+  border-radius: 100px;
+  border: 1px solid #1D232C;
+  position: relative;
+  margin-left: 90vw;
+  margin-top: 1em;
+`
