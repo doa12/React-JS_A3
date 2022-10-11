@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Router from './Router';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { darkTheme, lightTheme } from './theme'
@@ -71,9 +71,8 @@ function App() {
   return(
     <>
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-        <Button onClick={toggleDark}>☀️ / 🌙</Button>
         <GlobalStyle />
-        <Router />
+        <Router isDark={isDark} toggleDark={toggleDark} />
         <ReactQueryDevtools initialIsOpen={true} />
       </ThemeProvider>
     </>
@@ -81,17 +80,3 @@ function App() {
 }
 
 export default App;
-
-const Button = styled.button`
-  cursor: pointer;
-  text-align: center;
-  width: 75px; 
-  height: 35px;
-  background: ivory;
-  display: block;
-  border-radius: 100px;
-  border: 1px solid #1D232C;
-  position: relative;
-  margin-left: 90vw;
-  margin-top: 1em;
-`
