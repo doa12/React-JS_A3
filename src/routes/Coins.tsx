@@ -67,8 +67,12 @@ interface ICoin {
   type: string,
 }
 
+interface ICoinsProps {
+  toggleDark: () => void;
+}
+
 // 반드시 style 밑에 function 작성
-function Coins() {
+function Coins({ toggleDark }: ICoinsProps) {
   /** useQuery('queryKey', fetcher function) **/
   const { isLoading, data } = useQuery<ICoin[]>('allCoins', fetchCoins)
   return (
@@ -78,6 +82,7 @@ function Coins() {
       </Helmet>
       <Header>
         <Title>Coins</Title>
+        <Button onClick={toggleDark}>☀️ / 🌙</Button>
       </Header>
       {isLoading ? (
           <Loader>Loading...</Loader>
@@ -103,3 +108,15 @@ function Coins() {
 }
 
 export default Coins;
+
+const Button = styled.button`
+  cursor: pointer;
+  text-align: center;
+  width: 75px; 
+  height: 35px;
+  background: ivory;
+  border-radius: 100px;
+  border: 1px solid #1D232C;
+  margin-left: 10px;
+  margin-top: 1em;
+`
