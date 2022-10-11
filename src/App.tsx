@@ -87,7 +87,7 @@ const Button = styled.button`
   text-align: center;
   width: 75px; 
   height: 35px;
-  background: whitesmoke;
+  background: ivory;
   display: block;
   border-radius: 100px;
   border: 1px solid #1D232C;
